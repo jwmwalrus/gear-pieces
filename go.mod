@@ -5,13 +5,13 @@ go 1.24.0
 toolchain go1.24.4
 
 require (
-	github.com/jwmwalrus/rtcycler v0.7.3
+	github.com/jwmwalrus/rtcycler v0.7.4
 	google.golang.org/grpc v1.78.0
 )
 
 require (
 	github.com/adrg/xdg v0.5.3 // indirect
-	github.com/jwmwalrus/bnp v1.23.1 // indirect
+	github.com/jwmwalrus/bnp v1.24.0 // indirect
 	github.com/nightlyone/lockfile v1.0.0 // indirect
 	github.com/pborman/getopt/v2 v2.1.0 // indirect
 	golang.org/x/net v0.48.0 // indirect
