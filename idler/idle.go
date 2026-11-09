@@ -192,6 +192,12 @@ func Idle(ctx context.Context) {
 	InterruptSignal <- os.Interrupt
 }
 
+func IdleStatus() []Status {
+	idleStatusStack.mu.RLock()
+	defer idleStatusStack.mu.RUnlock()
+	return idleStatusStack.s
+}
+
 // IsAppBusy returns true if some process has registered as busy.
 func IsAppBusy() bool {
 	idleStatusStack.mu.RLock()
