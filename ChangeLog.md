@@ -9,6 +9,10 @@ This project uses [semantic versions](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.12.0] 2026-11-10
+
+Remove idler.Get{Busy,Free} for streaming calls
+
 ## [0.11.1] 2026-11-10
 
 Tag release
