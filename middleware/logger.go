@@ -56,7 +56,8 @@ func (li *LoggerInterceptor) Stream() grpc.StreamServerInterceptor {
 	return func(req any, stream grpc.ServerStream,
 		info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
 
-		// NOTE: each streaming call should take care of GetBusy/GetFree on their own.
+		idler.GetBusy(idler.StatusRequest)
+		defer func() { idler.GetFree(idler.StatusRequest) }()
 
 		newCtx := li.Before(stream.Context(), info.FullMethod)
 		wrapped := newWrappedServerStream(newCtx, stream, li)
