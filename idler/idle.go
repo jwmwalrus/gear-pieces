@@ -1,3 +1,4 @@
+// Package idler handles server shutdown after a timeout.
 package idler
 
 import (
@@ -37,8 +38,8 @@ const (
 	// StatusSubscription A client subscription is active.
 	StatusSubscription
 
-	// StatusDbOperations A DB-related operation is in progress.
-	StatusDbOperations
+	// StatusDBOperations A DB-related operation is in progress.
+	StatusDBOperations
 
 	// StatusFileOperations A file-related operation is in progress.
 	StatusFileOperations
@@ -50,7 +51,7 @@ var (
 		StatusEngineLoop:     "engine-loop",
 		StatusRequest:        "request",
 		StatusSubscription:   "subscription",
-		StatusDbOperations:   "db-operations",
+		StatusDBOperations:   "db-operations",
 		StatusFileOperations: "file-operations",
 	}
 )
