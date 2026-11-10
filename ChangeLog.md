@@ -9,6 +9,10 @@ This project uses [semantic versions](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.11.1] 2026-11-10
+
+Tag release
+
 ## [0.11.0] 2026-11-09
 
 Add IdleStatus() function
