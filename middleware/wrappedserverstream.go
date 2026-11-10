@@ -27,7 +27,7 @@ func (w *wrappedServerStream) Context() context.Context {
 	return w.wrappedContext
 }
 
-func (w *wrappedServerStream) SendMsg(m interface{}) error {
+func (w *wrappedServerStream) SendMsg(m any) error {
 	err := w.ServerStream.SendMsg(m)
 	w.interceptor.After(w.wrappedContext, err)
 	return err

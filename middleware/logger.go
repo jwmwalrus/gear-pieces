@@ -20,11 +20,13 @@ var (
 	loggerKey = &loggerMarker{}
 )
 
+// LoggerInterceptor implements Interceptor and WrappedInterceptor.
 type LoggerInterceptor struct {
 	loggerType InterceptorType
 	debug      bool
 }
 
+// NewLoggerInterceptor returns a new LoggerInterceptor.
 func NewLoggerInterceptor(lt InterceptorType, debug bool) *LoggerInterceptor {
 	rtc.With(
 		"type", lt,
@@ -35,8 +37,8 @@ func NewLoggerInterceptor(lt InterceptorType, debug bool) *LoggerInterceptor {
 }
 
 func (li *LoggerInterceptor) Unary() grpc.UnaryServerInterceptor {
-	return func(ctx context.Context, req interface{},
-		info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+	return func(ctx context.Context, req any,
+		info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
 
 		if path.Base(info.FullMethod) != "Off" {
 			idler.GetBusy(idler.StatusRequest)
@@ -51,11 +53,10 @@ func (li *LoggerInterceptor) Unary() grpc.UnaryServerInterceptor {
 }
 
 func (li *LoggerInterceptor) Stream() grpc.StreamServerInterceptor {
-	return func(req interface{}, stream grpc.ServerStream,
+	return func(req any, stream grpc.ServerStream,
 		info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
 
-		idler.GetBusy(idler.StatusRequest)
-		defer func() { idler.GetFree(idler.StatusRequest) }()
+		// NOTE: each streaming call should take care of GetBusy/GetFree on their own.
 
 		newCtx := li.Before(stream.Context(), info.FullMethod)
 		wrapped := newWrappedServerStream(newCtx, stream, li)

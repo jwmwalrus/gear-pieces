@@ -1,3 +1,4 @@
+// Package middleware defines interceptors.
 package middleware
 
 import (
@@ -7,6 +8,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
+// InterceptorType is the type of request supported.
 type InterceptorType int
 
 const (
@@ -21,11 +23,13 @@ func (it InterceptorType) String() string {
 	}[it]
 }
 
+// Interceptor intercepts both types of requests.
 type Interceptor interface {
 	Unary() grpc.UnaryServerInterceptor
 	Stream() grpc.StreamServerInterceptor
 }
 
+// WrappedInterceptor intercepts before and after requests.
 type WrappedInterceptor interface {
 	Before(ctx context.Context, fullMethod string) context.Context
 	After(ctx context.Context, err error)
