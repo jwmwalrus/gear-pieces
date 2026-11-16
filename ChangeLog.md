@@ -9,6 +9,10 @@ This project uses [semantic versions](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.13.1] 2026-11-15
+
+Update dependencies
+
 ## [0.13.0] 2026-11-10
 
 Revert idler change for streaming
