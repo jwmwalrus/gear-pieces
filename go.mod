@@ -3,7 +3,7 @@ module github.com/jwmwalrus/gear-pieces
 go 1.26.0
 
 require (
-	github.com/jwmwalrus/rtcycler v0.7.5
+	github.com/jwmwalrus/rtcycler v0.7.6
 	google.golang.org/grpc v1.84.0
 )
 
